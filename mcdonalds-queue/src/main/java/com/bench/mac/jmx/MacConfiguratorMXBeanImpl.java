@@ -23,12 +23,12 @@ public class MacConfiguratorMXBeanImpl implements MacConfiguratorMXBean {
         }
     }
 
-    public synchronized void openMacDonalds() {
+    public void openMacDonalds() {
         System.out.println("Mac opened!");
     }
 
     @Override
-    public synchronized void pauseMac(boolean pause) {
+    public void pauseMac(boolean pause) {
         System.out.println("Mac pause status changed to " + pause);
     }
 
@@ -37,7 +37,7 @@ public class MacConfiguratorMXBeanImpl implements MacConfiguratorMXBean {
     }
 
     @Override
-    public synchronized void setClientSize(int size) {
+    public void setClientSize(int size) {
         macOptions.setClients(size);
         System.out.println("Client size now " + size);
     }
@@ -47,7 +47,7 @@ public class MacConfiguratorMXBeanImpl implements MacConfiguratorMXBean {
         return macOptions.getConsumers();
     }
 
-    public synchronized void setConsumerSize(int size) {
+    public void setConsumerSize(int size) {
         macOptions.setConsumers(size);
         System.out.println("Customer size now " + size);
     }
