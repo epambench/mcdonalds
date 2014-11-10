@@ -1,0 +1,1 @@
+* fix the classpath http://zenjava.com/javafx/maven/fix-classpath.html

@@ -2,29 +2,51 @@ package com.bench.mac.model;
 
 import com.bench.mac.constants.HungryStates;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@ToString(exclude = { "queueNumber", "hungryState" })
-@EqualsAndHashCode
 public class Client {
 
-	@Getter
-	@Setter
 	private String name;
-	@Getter
-	@Setter
 	private int order;
-	@Getter
-	@Setter
 	private long eatTime;
-	@Getter
-	@Setter
 	private HungryStates hungryState;
-	@Getter
-	@Setter
 	private int queueNumber;
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getOrder() {
+		return order;
+	}
+
+	public void setOrder(int order) {
+		this.order = order;
+	}
+
+	public long getEatTime() {
+		return eatTime;
+	}
+
+	public void setEatTime(long eatTime) {
+		this.eatTime = eatTime;
+	}
+
+	public HungryStates getHungryState() {
+		return hungryState;
+	}
+
+	public void setHungryState(HungryStates hungryState) {
+		this.hungryState = hungryState;
+	}
+
+	public int getQueueNumber() {
+		return queueNumber;
+	}
+
+	public void setQueueNumber(int queueNumber) {
+		this.queueNumber = queueNumber;
+	}
 }
