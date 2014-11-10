@@ -109,6 +109,6 @@
         </HBox>
     </children>
     <stylesheets>
-        <URL value="@app.css" />
+        <URL value="@../css/app.css" />
     </stylesheets>
 </VBox>

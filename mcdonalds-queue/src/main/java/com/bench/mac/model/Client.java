@@ -1,6 +1,6 @@
 package com.bench.mac.model;
 
-import com.bench.mac.constants.HungryStates;
+import com.bench.mac.api.enums.HungryStates;
 
 public class Client {
 
