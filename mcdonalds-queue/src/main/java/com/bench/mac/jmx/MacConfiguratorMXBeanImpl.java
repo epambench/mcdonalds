@@ -1,7 +1,9 @@
 package com.bench.mac.jmx;
 
-import com.bench.mac.api.jmx.MacConfiguratorMXBean;
 import com.bench.mac.api.config.MacOptions;
+import com.bench.mac.api.jmx.MacConfiguratorMXBean;
+import com.bench.mac.config.guice.logger.InjectLogger;
+import org.slf4j.Logger;
 
 import javax.inject.Inject;
 import javax.management.JMException;
@@ -9,6 +11,9 @@ import javax.management.MBeanServer;
 import javax.management.ObjectName;
 
 public class MacConfiguratorMXBeanImpl implements MacConfiguratorMXBean {
+
+    @InjectLogger
+    private Logger logger;
 
     private MacOptions macOptions;
 
@@ -19,17 +24,17 @@ public class MacConfiguratorMXBeanImpl implements MacConfiguratorMXBean {
             ObjectName name = new ObjectName("MacDonaldsApp:type=MacConfiguratorMXBeanImpl");
             mBeanServer.registerMBean(this, name);
         } catch (JMException e) {
-            e.printStackTrace();
+            logger.error("Error publishing MXBean", e);
         }
     }
 
     public void openMacDonalds() {
-        System.out.println("Mac opened!");
+        logger.debug("Mac opened!");
     }
 
     @Override
     public void pauseMac(boolean pause) {
-        System.out.println("Mac pause status changed to " + pause);
+        logger.debug("Mac pause status changed to {}", pause);
     }
 
     public int getClientSize() {
@@ -39,7 +44,7 @@ public class MacConfiguratorMXBeanImpl implements MacConfiguratorMXBean {
     @Override
     public void setClientSize(int size) {
         macOptions.setClients(size);
-        System.out.println("Client size now " + size);
+        logger.debug("Client size now {}", size);
     }
 
     @Override
@@ -49,6 +54,6 @@ public class MacConfiguratorMXBeanImpl implements MacConfiguratorMXBean {
 
     public void setConsumerSize(int size) {
         macOptions.setConsumers(size);
-        System.out.println("Customer size now " + size);
+        logger.debug("Customer size now {}", size);
     }
 }

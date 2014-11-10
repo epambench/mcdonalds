@@ -4,8 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Controller {
+
+    private Logger logger = LoggerFactory.getLogger(Controller.class);
 
     @FXML
     private Button helloButton;
@@ -14,7 +18,7 @@ public class Controller {
     private MenuBar menuBar;
 
     public void sayHello(ActionEvent actionEvent) {
-        System.out.println("Hello world!");
+        logger.info("Hello world!");
     }
 }
 

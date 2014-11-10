@@ -2,7 +2,7 @@ package com.bench.mac.config;
 
 import com.bench.mac.api.config.MacOptions;
 
-public class MacOptionsImpl implements MacOptions{
+public class MacOptionsImpl implements MacOptions {
 
     private int clients;
     private int consumers;

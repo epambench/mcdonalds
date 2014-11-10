@@ -3,13 +3,15 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.bench.mac</groupId>
     <artifactId>mcdonalds-queue</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>mcdonalds-queue</name>
+    <packaging>jar</packaging>
+    <version>0.0.1-SNAPSHOT</version>
 
     <properties>
         <jbehaviour.version>0.0.1</jbehaviour.version>
         <guice.version>3.0</guice.version>
         <jbehave.version>4.0-beta-11</jbehave.version>
+        <lb.version>1.1.2</lb.version>
     </properties>
 
     <organization>
@@ -46,6 +48,24 @@
             <groupId>com.miglayout</groupId>
             <artifactId>miglayout-javafx</artifactId>
             <version>4.2</version>
+        </dependency>
+
+        <!--<dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1.1</version>
+            &lt;!&ndash;<scope>provided</scope>&ndash;&gt;
+        </dependency>-->
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${lb.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${lb.version}</version>
         </dependency>
     </dependencies>
 
