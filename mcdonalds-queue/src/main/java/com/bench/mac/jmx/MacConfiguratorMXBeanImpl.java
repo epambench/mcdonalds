@@ -12,7 +12,6 @@ import javax.management.ObjectName;
 
 public class MacConfiguratorMXBeanImpl implements MacConfiguratorMXBean {
 
-    @Inject
     @InjectLogger
     private Logger logger;
 
@@ -38,23 +37,23 @@ public class MacConfiguratorMXBeanImpl implements MacConfiguratorMXBean {
         logger.debug("Mac pause status changed to {}", pause);
     }
 
-    public int getClientSize() {
+    public int[] getClientSize() {
         return macOptions.getClients();
     }
 
     @Override
-    public void setClientSize(int size) {
+    public void setClientSize(int[] size) {
         macOptions.setClients(size);
         logger.debug("Client size now {}", size);
     }
 
     @Override
     public int getConsumerSize() {
-        return macOptions.getConsumers();
+        return macOptions.getWorkers();
     }
 
     public void setConsumerSize(int size) {
-        macOptions.setConsumers(size);
+        macOptions.setWorkers(size);
         logger.debug("Customer size now {}", size);
     }
 }

@@ -4,31 +4,31 @@ import com.bench.mac.api.config.MacOptions;
 
 public class MacOptionsImpl implements MacOptions {
 
-    private int clients;
-    private int consumers;
+    private int[] clients;
+    private int workers;
 
     public MacOptionsImpl() {
-        this.clients = 0;
-        this.consumers = 0;
+        this.clients = new int[0];
+        this.workers = 0;
     }
 
-    public int getClients() {
+    public int[] getClients() {
         return clients;
     }
 
-    public void setClients(int clients) {
+    public void setClients(int[] clients) {
         synchronized (this) {
             this.clients = clients;
         }
     }
 
-    public int getConsumers() {
-        return consumers;
+    public int getWorkers() {
+        return workers;
     }
 
-    public void setConsumers(int consumers) {
+    public void setWorkers(int workers) {
         synchronized (this) {
-            this.consumers = consumers;
+            this.workers = workers;
         }
     }
 

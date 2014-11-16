@@ -2,15 +2,15 @@ package com.bench.mac.api.enums;
 
 import java.util.concurrent.TimeUnit;
 
-public enum HungryStates {
-    FED(500L, TimeUnit.MILLISECONDS),
-    HUNGRY(1L, TimeUnit.SECONDS),
-    EAT_ELEPHANT(5L, TimeUnit.SECONDS);
+public enum EatSpeed {
+    BOY(500L, TimeUnit.MILLISECONDS),
+    GIRL(1L, TimeUnit.SECONDS),
+    OFFICE_WORKER(5L, TimeUnit.MILLISECONDS);
 
     private final TimeUnit timeUnit;
     private final long time;
 
-    HungryStates(long time, TimeUnit timeUnit) {
+    EatSpeed(long time, TimeUnit timeUnit) {
         this.time = time;
         this.timeUnit = timeUnit;
     }
@@ -23,9 +23,9 @@ public enum HungryStates {
         return time;
     }
 
-    public static class Random extends RandomEnum<HungryStates> {
+    public static class Random extends RandomEnum<EatSpeed> {
         public Random() {
-            super(HungryStates.class);
+            super(EatSpeed.class);
         }
     }
 }

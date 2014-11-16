@@ -8,9 +8,9 @@ public interface MacConfiguratorMXBean {
 
     void pauseMac(boolean pause);
 
-    int getClientSize();
+    int[] getClientSize();
 
-    void setClientSize(int size);
+    void setClientSize(int[] size);
 
     int getConsumerSize();
 
