@@ -14,9 +14,15 @@ public interface McDonaldsStore {
 
     Set<Worker> getRegisteredWorkers();
 
+    Set<Client> getFullFedClients();
+
     void openStore();
 
     void updateClientQueues();
 
     void updateWorkersNumber();
+
+    void closeStore();
+
+    String getName();
 }

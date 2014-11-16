@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 public class MainApp extends Application {
-    private Logger logger = LoggerFactory.getLogger(MainApp.class);
+    private static final Logger logger = LoggerFactory.getLogger(MainApp.class);
 
     public static void main(String[] args) {
         Logger staticLogger = LoggerFactory.getLogger(MainApp.class);

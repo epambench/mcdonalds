@@ -3,8 +3,8 @@ package com.bench.mac.api.enums;
 import java.util.concurrent.TimeUnit;
 
 public enum EatSpeed {
-    BOY(500L, TimeUnit.MILLISECONDS),
-    GIRL(1L, TimeUnit.SECONDS),
+    BOY(100L, TimeUnit.MILLISECONDS),
+    GIRL(300L, TimeUnit.MILLISECONDS),
     OFFICE_WORKER(5L, TimeUnit.MILLISECONDS);
 
     private final TimeUnit timeUnit;

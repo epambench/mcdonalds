@@ -3,9 +3,9 @@ package com.bench.mac.api.enums;
 import java.util.concurrent.TimeUnit;
 
 public enum HungryStates {
-    FED(500L, TimeUnit.MILLISECONDS),
-    HUNGRY(1L, TimeUnit.SECONDS),
-    EAT_ELEPHANT(5L, TimeUnit.SECONDS);
+    FED(300L, TimeUnit.MILLISECONDS),
+    HUNGRY(500L, TimeUnit.MILLISECONDS),
+    EAT_ELEPHANT(1L, TimeUnit.SECONDS);
 
     private final TimeUnit timeUnit;
     private final long time;

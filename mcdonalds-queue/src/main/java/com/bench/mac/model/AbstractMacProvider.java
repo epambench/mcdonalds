@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 public abstract class AbstractMacProvider {
 
-    private Logger logger = LoggerFactory.getLogger(AbstractMacProvider.class);
+    private static final Logger logger = LoggerFactory.getLogger(AbstractMacProvider.class);
 
     private static int personalNumberCounter = 0;
 

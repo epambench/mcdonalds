@@ -19,12 +19,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class LittleMcDonaldsStore implements McDonaldsStore {
 
-    private Logger logger = LoggerFactory.getLogger(LittleMcDonaldsStore.class);
+    private static final Logger logger = LoggerFactory.getLogger(LittleMcDonaldsStore.class);
 
     private final MacOptions macOptions;
     private MacManager macManager;
 
     private final Set<List<Client>> clientQueues = new HashSet<>();
+    private final Set<Client> fullFedClients = new HashSet<>();
     private final Set<Worker> registeredWorkers = new HashSet<>();
 
     private AtomicBoolean opened = new AtomicBoolean(false);
@@ -47,36 +48,60 @@ public class LittleMcDonaldsStore implements McDonaldsStore {
         this.workerProvider = workerProvider;
     }
 
+    @Override
     public MacOptions getMacOptions() {
         return macOptions;
     }
 
+    @Override
     public MacManager getMacManager() {
         return macManager;
     }
 
+    @Override
     public Set<List<Client>> getClientQueues() {
         return clientQueues;
     }
 
+    @Override
     public Set<Worker> getRegisteredWorkers() {
         return registeredWorkers;
     }
 
     @Override
+    public Set<Client> getFullFedClients() {
+        return fullFedClients;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void closeStore() {
+        opened.set(false);
+        logger.info(String.format("\"%s\": CLOSED", name));
+    }
+
+    @Override
     public void openStore() {
-        logger.info("We are about to open the store");
+        logger.info(String.format("\"%s\": We are about to open", name));
         if (opened.get()) {
-            throw new IllegalStateException("Store should be closed first in order to be opened!");
+            throw new IllegalStateException(
+                    String.format("\"%s\":  should be closed first in order to be opened!", name));
         }
         macManager = macManagerProvider.get();
-        logger.info("Mac Manager comes to work");
+        macManager.assignTheStore(this);
+
+        logger.info(String.format("\"%s\": Mac Manager comes to work", name));
         if (getMacOptions() == null) {
-            throw new IllegalStateException("Store can not be opened with no options configured");
+            throw new IllegalStateException(
+                    String.format("\"%s\": can not be opened with no options configured", name));
         }
 
         if (getMacManager() == null) {
-            throw new IllegalStateException("Store can not be opened with no Manager");
+            throw new IllegalStateException(String.format("\"%s\": can not be opened with no Manager", name));
         }
 
         if (macOptions.getClients() == null) {
@@ -85,14 +110,25 @@ public class LittleMcDonaldsStore implements McDonaldsStore {
 
         updateClientQueues();
         updateWorkersNumber();
-        logger.info("turning key in the keyhole...");
+        logger.info(String.format("\"%s\": turning key in the keyhole...", name));
         opened.set(true);
-        logger.info("we are OPEN!");
+        logger.info(String.format("\"%s\": OPEN!", name));
+
+        while (true) {
+            boolean clientExist = macManager.pickClient();
+            if (!clientExist) {
+                break;
+            }
+            macManager.pickWorker();
+            macManager.orderToProcess();
+        }
+
+        closeStore();
     }
 
     @Override
     public void updateClientQueues() {
-        logger.info("updating number of clients");
+        logger.info(String.format("\"%s\": updating number of clients", name));
         if (clientQueues.isEmpty()) {
             for (int numberOfPersonsInThisQueue : macOptions.getClients()) {
                 ArrayList<Client> clientsInQueue = new ArrayList<>();
@@ -104,12 +140,12 @@ public class LittleMcDonaldsStore implements McDonaldsStore {
         } else {
 
         }
-        logger.info("updating number of clients finished");
+        logger.info(String.format("\"%s\": updating number of clients finished", name));
     }
 
     @Override
     public void updateWorkersNumber() {
-        logger.info("updating number of workers");
+        logger.info(String.format("\"%s\": updating number of workers", name));
         if (registeredWorkers.isEmpty()) {
             for (int personNumber = 1; personNumber <= macOptions.getWorkers(); personNumber++) {
                 registeredWorkers.add(workerProvider.get());
@@ -117,6 +153,6 @@ public class LittleMcDonaldsStore implements McDonaldsStore {
         } else {
 
         }
-        logger.info("updating number of workers finished");
+        logger.info(String.format("\"%s\": updating number of workers", name));
     }
 }

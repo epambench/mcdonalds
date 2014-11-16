@@ -3,12 +3,11 @@ package com.bench.mac.model.client;
 import com.bench.mac.api.enums.EatSpeed;
 import com.bench.mac.api.enums.HungryStates;
 import com.bench.mac.api.model.Client;
-import com.bench.mac.config.guice.logger.InjectLogger;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class SimpleClient implements Client {
-    @InjectLogger
-    private Logger logger;
+    private static final Logger logger = LoggerFactory.getLogger(SimpleClient.class);
 
     private final String name;
     private final EatSpeed eatSpeed;
@@ -30,13 +29,13 @@ class SimpleClient implements Client {
 
     @Override
     public void eat() {
-        logger.info(String.format("Client \"%s\" is eating", getName()));
+        logger.info(String.format("\"%s\": is eating", getName()));
         try {
             eatSpeed.timeUnit().sleep(eatSpeed.time());
         } catch (InterruptedException e) {
-            logger.info(String.format("Client \"%s\"is mad! Someone interrupted him eating!", getName()));
+            logger.info(String.format("\"%s\": is mad! Someone interrupted him eating!", getName()));
         }
-        logger.info(String.format("Client \"%s\" eat everything and is leaving MacDac happy", getName()));
+        logger.info(String.format("\"%s\": eat everything and is leaving MacDac happy", getName()));
     }
 
 }

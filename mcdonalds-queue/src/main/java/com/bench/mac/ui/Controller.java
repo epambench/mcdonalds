@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 public class Controller {
 
-    private Logger logger = LoggerFactory.getLogger(Controller.class);
+    private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 
     @FXML
     private Button helloButton;
