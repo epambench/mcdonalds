@@ -1,29 +1,32 @@
 package com.bench.mac;
 
+import com.bench.mac.api.config.MacOptions;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.embedder.Embedder;
+import org.junit.Assert;
+
+import javax.inject.Inject;
 
 public class MacStories extends Embedder {
 
-    private int consumers;
-    private int clients;
+    @Inject
+    private MacOptions macOptions;
 
     @Given("the McDonalds is about to open with director")
     public void macIsAboutToOpen() {
-        consumers = 0;
-        clients = 0;
+        Assert.assertNotNull("Mac Options should not be null", macOptions);
     }
 
     @Given("$number consumer")
     public void consumers(final int number) {
-        this.consumers = number;
+        macOptions.setConsumers(number);
     }
 
     @Given("$number client")
     public void clients(final int number) {
-        this.clients = number;
+        macOptions.setClients(number);
     }
 
     @When("McDonalds opens")

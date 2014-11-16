@@ -33,6 +33,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.jbehave</groupId>
+            <artifactId>jbehave-guice</artifactId>
+            <version>${jbehave.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
             <version>${guice.version}</version>

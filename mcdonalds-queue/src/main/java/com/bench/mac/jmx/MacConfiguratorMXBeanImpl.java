@@ -12,6 +12,7 @@ import javax.management.ObjectName;
 
 public class MacConfiguratorMXBeanImpl implements MacConfiguratorMXBean {
 
+    @Inject
     @InjectLogger
     private Logger logger;
 
